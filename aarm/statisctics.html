@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apun ka website</title>
+    <link rel="stylesheet" href="statstyles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+</head>
+<body>
+    <div class="sidebar collapsed">
+        <button class="collapse-btn" onclick="toggleSidebar()">☰</button>
+        <ul>
+            <li><a href="homepage.php"><i class="fa fa-home"></i><span>Home</span></a></li>
+            <li><a href="profile.php"><i class="fas fa-user"></i><span>Profile</span></a></li>
+            <li><a href="#"><i class="fas fa-book"></i><span>Courses</span></a></li>
+            <li><a href="#"><i class="fas fa-tasks"></i><span>To Do List</span></a></li>
+            <li><a href="#"><i class="fas fa-calendar-alt"></i><span>Planner</span></a></li>
+            <li><a href="#"><i class="fas fa-chart-line"></i><span>Statistics</span></a></li>
+        </ul>
+
+        <!-- Logout Button -->
+        <div class="logout-container">
+            <a href="logout.php" class="logout-btn">
+                <i class="fas fa-sign-out-alt"></i> <span class="logout-text">Logout</span>
+            </a>
+        </div>
+    </div>
+    <div class="main-content">
+       
+        <div class="header">
+            <div class="welcome-text"><left>Statistics,</left></div>
+            <div class="header">
+                <div class="search-bar">
+                    <input type="text" placeholder="Search...">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+            
+        </div>
+        <div class="graphBox">
+            <div class="chart-container">
+                <h2 class="chart-title">Today's Stats</h2>
+                <div class="box" ,align="center">
+                    <canvas id="myChart"></canvas>
+                </div>
+            </div>
+            <div class="chart-container">
+                <h2 class="chart-title">Weekly Stats</h2>
+                <div class="box" ,align="center">
+                    <canvas id="weekly"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="graphBox">
+            <div class="chart-container">
+                <h2 class="chart-title">Course Progress</h2>
+                <div class="box" ,align="center">
+                    <canvas id="CoPg"></canvas>
+                </div>
+            </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="Dashboard.js"></script>
+    <script src="myCharts.js"></script>
+</body>
+</html>

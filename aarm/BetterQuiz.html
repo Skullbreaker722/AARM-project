@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Powered Learning Style Quiz</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.min.css">
+
+    <style>
+        body {
+            text-align: center;
+            margin-top: 20px;
+            background-color: #9f9fef;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin-top: 15px;
+        }
+        select, button {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        button {
+            cursor: pointer;
+            background-color: #6a1b9a;
+            color: white;
+            border: none;
+        }
+        button:hover {
+            background-color: #8e24aa;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>AI-Powered Learning Style Quiz</h2>
+        <form id="quiz-form">
+            <label>Do you prefer learning through videos?</label>
+            <select id="video">
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select>
+
+            <label>Do you prefer reading books or articles?</label>
+            <select id="reading">
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select>
+
+            <label>Do you learn better by listening (podcasts, lectures)?</label>
+            <select id="listening">
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select>
+
+            <label>Do you prefer hands-on practice (doing projects, experiments)?</label>
+            <select id="hands-on">
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select>
+
+            <label>Do you learn best through discussions and group study?</label>
+            <select id="discussion">
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select>
+
+            <label>Do you enjoy solving puzzles or brain teasers?</label>
+            <select id="puzzles">
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select>
+
+            <label>Do you prefer learning through real-life examples?</label>
+            <select id="real-life">
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select>
+
+            <label>Do you like to teach others what you have learned?</label>
+            <select id="teaching">
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select>
+
+            <label>Do you prefer learning in a quiet environment?</label>
+            <select id="quiet">
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select>
+
+            <label>Do you like to learn through trial and error?</label>
+            <select id="trial-error">
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select>
+
+            <button type="button" id="predict-general">See AI Results</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("predict-general").addEventListener("click", function() {
+            // Get user input
+            const video = parseInt(document.getElementById("video").value);
+            const reading = parseInt(document.getElementById("reading").value);
+            const listening = parseInt(document.getElementById("listening").value);
+            const handsOn = parseInt(document.getElementById("hands-on").value);
+            const discussion = parseInt(document.getElementById("discussion").value);
+            const puzzles = parseInt(document.getElementById("puzzles").value);
+            const realLife = parseInt(document.getElementById("real-life").value);
+            const teaching = parseInt(document.getElementById("teaching").value);
+            const quiet = parseInt(document.getElementById("quiet").value);
+            const trialError = parseInt(document.getElementById("trial-error").value);
+
+            // Calculate percentages for the four categories
+            const totalInterests = video + reading + listening + handsOn + discussion + puzzles + realLife + teaching + quiet + trialError;
+            const videoPercent = (video / totalInterests) * 100;
+            const readingPercent = (reading / totalInterests) * 100;
+            const listeningPercent = (listening / totalInterests) * 100;
+            const hybridPercent = ((handsOn + discussion + puzzles + realLife + teaching + quiet + trialError) / totalInterests) * 100;
+
+            // Determine the learning style based on highest percentage
+            const results = {
+                "Video Learner": videoPercent,
+                "Reader": readingPercent,
+                "Audio Learner": listeningPercent,
+                "Hybrid": hybridPercent
+            };
+
+            let dominantStyle = "Hybrid";
+            let maxPercent = hybridPercent;
+
+            for (const [key, value] of Object.entries(results)) {
+                if (value > maxPercent) {
+                    maxPercent = value;
+                    dominantStyle = key;
+                }
+            }
+
+            // Redirect to results page with results as URL parameters
+            const urlParams = new URLSearchParams({
+                dominantStyle,
+                videoPercent,
+                readingPercent,
+                listeningPercent,
+                hybridPercent
+            });
+            window.location.href = `results.html?${urlParams.toString()}`;
+        });
+    </script>
+</body>
+</html>

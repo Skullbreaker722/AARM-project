@@ -1,0 +1,337 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    background: linear-gradient(135deg, #ffffff 0%, #e6e6fa 100%); 
+    color: #333;
+    min-height: 100vh;
+}
+.welcome-text {
+    position: fixed;
+    top: 20px; /*welcome text ki maa ka saki naka*/
+    left: 270px; 
+    font-size: 2.5em; 
+    font-weight: bold;
+    font-family: 'Poppins', sans-serif; 
+    color: #6a5acd; 
+    z-index: 1000; 
+    transition: left 0.3s ease; 
+    text-shadow: 2px 2px 4px rgba(106, 90, 205, 0.3); 
+    letter-spacing: 1px; 
+}
+
+
+.sidebar {
+    width: 250px;
+    background: linear-gradient(135deg, #6a5acd 0%, #9370db 100%); 
+    color: white;
+    height: 100vh;
+    transition: width 0.3s ease;
+    position: fixed;
+    left: 0;
+    top: 0;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar.collapsed {
+    width: 60px;
+}
+
+.sidebar.collapsed + .main-content .welcome-text {
+    left: 80px; 
+}
+
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 60px;
+}
+
+.sidebar ul li {
+    padding: 15px;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.sidebar ul li:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateX(5px);
+}
+
+.sidebar ul li a {
+    color: white;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.sidebar ul li a i {
+    margin-right: 15px;
+    font-size: 1.2em;
+    transition: color 0.3s;
+}
+
+.sidebar ul li a span {
+    transition: opacity 0.3s, margin-left 0.3s;
+    opacity: 0;
+    margin-left: -20px;
+}
+
+.sidebar:not(.collapsed) ul li a span {
+    opacity: 1;
+    margin-left: 0;
+}
+
+.collapse-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 15px;
+    width: 100%;
+    text-align: left;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: background-color 0.3s;
+}
+
+.collapse-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.main-content {
+    flex-grow: 1;
+    padding: 20px;
+    margin-left: 60px;
+    transition: margin-left 0.3s ease;
+}
+
+.sidebar:not(.collapsed) + .main-content {
+    margin-left: 250px;
+}
+
+.header {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    background-color: rgba(255, 255, 255, 0.9); 
+    border-radius: 30px; 
+    padding: 5px 15px; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+    transition: box-shadow 0.3s ease, transform 0.3s ease; 
+}
+
+.search-bar:hover {
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15); 
+    transform: translateY(-2px); 
+}
+
+.search-bar input {
+    padding: 10px 15px;
+    border: none; 
+    border-radius: 25px;
+    margin-right: 10px;
+    width: 200px;
+    transition: width 0.3s ease, box-shadow 0.3s ease;
+    font-size: 1em;
+    outline: none;
+    background-color: transparent; 
+    color: #6a5acd; 
+}
+
+.search-bar input::placeholder {
+    color: #aaa; 
+}
+
+.search-bar input:focus {
+    width: 300px;
+    box-shadow: 0 0 10px rgba(147, 112, 219, 0.3); 
+}
+
+.search-bar button {
+    padding: 10px 15px;
+    border: none;
+    background-color: #9370db; 
+    color: white;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    font-size: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-bar button:hover {
+    background-color: #7b68ee; 
+    transform: scale(1.05); 
+}
+
+.search-bar button i {
+    font-size: 1.2em; 
+}
+
+.quote-section {
+    text-align: center;
+    animation: fadeIn 2s;
+    background-color: rgba(255, 255, 255, 0.9); 
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+    max-width: 800%;
+    margin: 0 auto;
+}
+
+#quote {
+    font-family: 'Playfair Display', serif;
+    font-size: 2em;
+    font-style: italic;
+    font-weight: bold;
+    color: #6a5acd; 
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); 
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        width: 60px;
+    }
+
+    .sidebar ul li {
+        padding: 10px;
+    }
+
+    .collapse-btn {
+        text-align: center;
+    }
+
+    .main-content {
+        margin-left: 60px;
+    }
+
+    .sidebar:not(.collapsed) + .main-content {
+        margin-left: 250px;
+    }
+
+    .welcome-text {
+        left: 80px; 
+    }
+}
+
+/* Logout Button Styling */
+.logout-container {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    text-align: center;
+}
+
+.logout-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:transparent;
+    color: white;
+    text-decoration: none;
+    padding: 12px 15px;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: 0.3s ease-in-out;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.logout-btn i {
+    font-size: 18px;
+    margin-right: 8px;
+}
+
+/* When sidebar is collapsed */
+.sidebar.collapsed .logout-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    padding: 10px;
+    justify-content: center;
+}
+
+.sidebar.collapsed .logout-btn i {
+    margin: 0;
+}
+
+.sidebar.collapsed .logout-btn .logout-text {
+    display: none;
+}
+
+/* Hover effect */
+.logout-btn:hover {
+    background: #534998;
+}
+
+/* Sidebar transition fix */
+.sidebar.collapsed {
+    width: 60px;
+}
+
+.sidebar.collapsed + .main-content .welcome-text {
+    left: 80px;
+}
+
+.sidebar.collapsed .logout-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+/* Add this to your homepagestyle.css */
+.profile-section {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile-info {
+    text-align: left;
+}
+
+.profile-info h2 {
+    font-size: 2em;
+    color: #6a5acd;
+    margin-bottom: 20px;
+}
+
+.profile-info p {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    color: #333;
+}  
+
+.profile-info strong {
+    color: #6a5acd;
+}
+
+
+
